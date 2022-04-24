@@ -1,0 +1,51 @@
+.loginFormHidden{
+    display: none;
+}
+
+.loginForm{
+    width: 400px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.loginFormVisible{
+    display: flex;
+    position:relative; 
+    left: 0;
+    opacity: 1;
+    animation-name: slideLeft;
+    animation-duration: 1s;
+}
+
+.loginContainer{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+.loginInput{
+    width: 100%;
+    background: #121212;
+    border: none;
+    border-radius: 4px;
+    padding: 16px 11px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+@keyframes slideLeft{
+    0% {
+        opacity: 0;
+        left: 100px;
+    }
+
+    100%{
+        left: 0;
+        opacity: 1;
+    }
+}
