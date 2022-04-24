@@ -35,7 +35,51 @@
     border-radius: 4px;
     padding: 16px 11px;
     color: white;
+    outline: none;
     margin-bottom: 10px;
+}
+
+.loginForgetPassword{
+    align-self: end;
+    color: #006dcc;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.loginSubmit{
+    width: 100%;
+    padding: 11px;
+    background: #004c7e;
+    border: none;
+    margin-top: 20px;
+    border-radius: 5px;
+    color: #9a9898;
+}
+
+.passwordInputArea{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    input{
+        margin-bottom: 0;
+        width: 80%;
+        border-radius: 5px 0 0 5px;
+    }
+
+    button{
+        border-radius: 0 5px 5px 0;
+        color: black;
+        width: 20%;
+        background: #121212;
+        display: block;
+        border: none;
+        height: 100%;
+        color:gray;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 @keyframes slideLeft{
