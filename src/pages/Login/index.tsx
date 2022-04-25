@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Splash from '../../components/Splash'
-import Login from '../../components/Login'
+import LoginForm from '../../components/LoginForm'
 
-function App() {
+function Login() {
 
     const [splashHidden, setSplashHidden] = useState<boolean>(false)
 
@@ -15,9 +15,9 @@ function App() {
   return (
     <>
         <Splash screenHidden={splashHidden}/>
-        <Login screenHidden={splashHidden}/>
+        <LoginForm screenHidden={splashHidden}/>
     </>
   );
 }
 
-export default App;
+export default Login;

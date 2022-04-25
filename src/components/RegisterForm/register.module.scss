@@ -1,0 +1,56 @@
+.formContainer{
+    width: 400px;
+    display: flex;
+    height:100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    
+}
+
+.stepRegister{
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    display: none;
+    left: 200px;
+    opacity: 0;
+
+    span{
+        color:rgb(223, 223, 223);
+        font-size: 23px;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    small{
+        color: rgb(223, 223, 223);
+        margin: 10px 40px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+
+.stepVisible{
+    animation-name: stepTransition;
+    animation-duration: 1s;
+    display: flex;
+    opacity: 1;
+    left:0;
+}
+
+@keyframes stepTransition {
+    0%{
+        opacity: 0;
+        left:200px;
+    }
+    20%{
+        opacity: 1;
+    }
+    100%{
+        left: 0;
+    }
+}

@@ -25,18 +25,9 @@
     display: flex;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
     justify-content: center;
-}
-
-.loginInput{
-    width: 100%;
-    background: #121212;
-    border: none;
-    border-radius: 4px;
-    padding: 16px 11px;
-    color: white;
-    outline: none;
-    margin-bottom: 10px;
+    width:100%;
 }
 
 .loginForgetPassword{
@@ -45,15 +36,22 @@
     text-decoration: none;
     font-weight: 400;
     font-size: 14px;
+    margin-top:5px;
 }
 
 .loginSubmit{
     width: 100%;
     padding: 11px;
-    background: #004c7e;
+    background: #006dcc;
     border: none;
     margin-top: 20px;
     border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.loginSubmit:disabled{
+    background: #004c7e;
     color: #9a9898;
 }
 

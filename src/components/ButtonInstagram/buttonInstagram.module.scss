@@ -1,0 +1,15 @@
+.buttonInstagram{
+    width: 100%;
+    padding: 11px;
+    background: #006dcc;
+    border: none;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.buttonInstagram:disabled{
+    background: #004c7e;
+    color: #9a9898;
+}

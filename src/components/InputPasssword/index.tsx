@@ -1,9 +1,14 @@
 import style from './inputPassword.module.scss'
-import {ReactComponent as EyeSlashIcon} from '../../../assets/icons/eye-slash-solid.svg'
-import {ReactComponent as EyeSolid} from '../../../assets/icons/eye-solid.svg'
+import {ReactComponent as EyeSlashIcon} from '../../assets/icons/eye-slash-solid.svg'
+import {ReactComponent as EyeSolid} from '../../assets/icons/eye-solid.svg'
 import { useState } from 'react'
 
-export default function InputPassword(){
+interface Props{
+    onChange?: ((event: React.ChangeEvent<HTMLInputElement>) => void),
+    value?: any
+}
+
+export default function InputPassword({onChange = (() => {}), value = ""}: Props){
 
     const [hiddePassword, setHidePassword] = useState(false)
     const [typeInput, setTypeInput] = useState("password")
@@ -16,7 +21,7 @@ export default function InputPassword(){
 
     return (
         <div className={style.passwordInputArea}>
-            <input type={typeInput} placeholder="Password" className={style.loginInput} />
+            <input type={typeInput} placeholder="Password" value={value} onChange={event => onChange(event)} className={style.loginInput} />
             <button onClick={event => {
                 hidePassword(event)
             }}>

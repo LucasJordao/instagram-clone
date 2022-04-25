@@ -1,0 +1,17 @@
+.footerSignUp{
+    width:100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    border-top: 1px solid gray;
+    span{
+        margin-right: 10px;
+    }
+    a{
+        color: #006dcc;
+        text-decoration: none;
+        font-weight: 500; 
+    }
+}
