@@ -17,21 +17,22 @@ export default function Register(){
     }
 
     return (
-        <section className={style.formContainer}>
-            <article className={`${style.stepRegister} ${step == 1 ? style.stepVisible : ''}`}>
-                <span>Create username</span>
+        <div className={style.container}>
+            <section className={style.formContainer}>
+                <article className={`${style.stepRegister} ${step == 1 ? style.stepVisible : ''}`}>
+                    <span>Create username</span>
 
-                <small>Pick a username for you new account. You can always change it later</small>
+                    <small>Pick a username for you new account. You can always change it later</small>
 
-                <InputInstagram placeholder="Username" value={username} onChange={event => setUsername(event.target.value)}/>
+                    <InputInstagram placeholder="Username" value={username} onChange={event => setUsername(event.target.value)}/>
 
-                <ButtonInstagram text="Next" onClick={() => changeStep()} disabled={!(username.length > 5)}/>
-            </article>
+                    <ButtonInstagram text="Next" onClick={() => changeStep()} disabled={!(username.length > 5)}/>
+                </article>
 
-            <article className={`${style.stepRegister} ${step == 2 ? style.stepVisible : ''}`}>
-                <span>Create a password</span>
+                <article className={`${style.stepRegister} ${step == 2 ? style.stepVisible : ''}`}>
+                    <span>Create a password</span>
 
-                <small>We can remember the password, so you won't need to enter it on your iCloud devices.</small>
+                    <small>We can remember the password, so you won't need to enter it on your iCloud devices.</small>
 
                 <InputPassword value={password} onChange={event => setPassword(event.target.value)}/>
                 <ButtonInstagram text="Next" onClick={() => changeStep()} disabled={!(password.length > 5)}/>
@@ -46,5 +47,6 @@ export default function Register(){
             </article>
 
         </section>
+        </div>
     )
 }

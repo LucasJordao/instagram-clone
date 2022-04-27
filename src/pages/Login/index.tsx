@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Splash from '../../components/Splash'
 import LoginForm from '../../components/LoginForm'
 
 function Login() {
 
-    const [splashHidden, setSplashHidden] = useState<boolean>(false)
+    const [splashHidden, setSplashHidden] = useState<boolean>(true)
 
-    setTimeout( 
-        () => {
-            setSplashHidden(true)
-        }
-    , 3500);
+    useEffect(() => {
+      setSplashHidden(false)
+    })
 
   return (
     <>
-        <Splash screenHidden={splashHidden}/>
-        <LoginForm screenHidden={splashHidden}/>
+      {splashHidden ? <Splash/> : <LoginForm screenHidden={splashHidden}/>} 
     </>
   );
 }

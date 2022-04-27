@@ -78,6 +78,24 @@
         padding: 0;
         margin: 0;
     }
+    
+}
+
+.loginFailed{
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-top: 20px;
+    color: #f63434;
+}
+
+.spinnerLoad{
+    animation-name: spinnerLoad;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
 
 @keyframes slideLeft{
@@ -89,5 +107,15 @@
     100%{
         left: 0;
         opacity: 1;
+    }
+}
+
+@keyframes spinnerLoad {
+    0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
     }
 }

@@ -1,12 +1,11 @@
 import style from './splash.module.scss'
 import instagramLogo from '../../assets/imgs/instagram-logo.png'
 import instagramMeta from '../../assets/imgs/instagram-meta.png'
-import { useState } from 'react'
 
-export default function Splash({screenHidden = false} : {screenHidden: boolean}){
+export default function Splash(){
 
     return (
-        <div className={style.splashScreen} style={{display: screenHidden ? "none": "block"}}>
+        <div className={style.splashScreen}>
             <div className={style.logoInstagram}>
                 <img width="90px" src={instagramLogo} alt="" />
             </div>
