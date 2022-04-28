@@ -4,9 +4,9 @@ import style from './login.module.scss'
 import InputPassword from '../InputPasssword';
 import InputInstagram from '../InputInstagram';
 import LoginFooter from '../LoginFooter';
-import axios from 'axios';
-import { getCookie, setCookie } from '../../common/utils/cookieJs'
-import { Navigate } from 'react-router-dom';
+import { setCookie } from '../../common/utils/cookieJs'
+import { useNavigate } from 'react-router-dom';
+import api from '../../config/api';
 
 export default function Login({ screenHidden }: { screenHidden: boolean }) {
 
@@ -14,11 +14,12 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
     const disabledWithIconLoad = { disabled: true, loadIcon: "load" }
     const notDisabled = { disabled: false, loadIcon: "none" }
 
+    const navigate = useNavigate()
+
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: "",
-        loginFailed: false,
-        loginSuccess: false
+        loginFailed: false
     })
 
     const [submitDisabled, setSubmitDisabled] = useState({
@@ -26,18 +27,10 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
         loadIcon: "none"
     })
 
-    const token = getCookie("token")
-
     useEffect(() => {
         changeSubmitByInput()
     }, [loginFormData.username, loginFormData.password])
 
-
-    useEffect(() => {
-        if(token != undefined && token != ""){
-            setLoginFormData({...loginFormData, loginSuccess: true})
-        }
-    }, [])
 
     function sendLogin(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -46,15 +39,15 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
 
         setSubmitDisabled(disabledWithIconLoad);
 
-        axios.post("http://localhost:9090/instagram/login", { username, password })
+        api.post("/instagram/login", { username, password })
             .then(resposta => {
                 setSubmitDisabled(notDisabled);
                 setCookie("token", resposta.data, 1)
-                setLoginFormData({ ...loginFormData, loginSuccess: true })
+                navigate("/")
             }).catch(() => {
-                        setSubmitDisabled(notDisabled);
-                        setLoginFormData({ ...loginFormData, loginFailed: true })
-                    })
+                setSubmitDisabled(notDisabled);
+                setLoginFormData({ ...loginFormData, loginFailed: true })
+            })
 
     }
 
@@ -68,10 +61,7 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
     }
 
     return (
-        loginFormData.loginSuccess ? 
-            <Navigate to="/" /> 
-                :
-            <div className={style.loginContainer}>
+        <div className={style.loginContainer}>
                 <form
                     className={`${screenHidden ? style.loginFormVisible : style.loginFormHidden} ${style.loginForm}`}
                     onSubmit={event => sendLogin(event)}
@@ -92,6 +82,6 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
                     {loginFormData.loginFailed ? <div className={style.loginFailed}> Login failed </div> : ""}
                 </form>
                 <LoginFooter to="/register" textLink='Sign Up.' textSpan="Don't have an account?" />
-            </div>
+            </div>   
     )
 }
