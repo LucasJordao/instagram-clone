@@ -16,6 +16,7 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
 
     const navigate = useNavigate()
 
+    // States
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: "",
@@ -27,18 +28,31 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
         loadIcon: "none"
     })
 
+    // UseEffects
     useEffect(() => {
         changeSubmitByInput()
     }, [loginFormData.username, loginFormData.password])
 
 
-    function sendLogin(event: React.FormEvent<HTMLFormElement>) {
+    useEffect(() => {
+        const listener = (event: KeyboardEvent) => {
+            if ((event.code === "Enter" || event.code === "NumpadEnter") && submitDisabled === notDisabled) {
+              event.preventDefault();
+              sendLogin()
+            }
+          };
+          document.addEventListener("keydown", listener);
+    }, [])
+
+    // Functions aux
+    function sendFormLogin(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        sendLogin()
+    }
 
+    function sendLogin(){
         const { username, password } = loginFormData
-
         setSubmitDisabled(disabledWithIconLoad);
-
         api.post("/instagram/login", { username, password })
             .then(resposta => {
                 setSubmitDisabled(notDisabled);
@@ -48,7 +62,6 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
                 setSubmitDisabled(notDisabled);
                 setLoginFormData({ ...loginFormData, loginFailed: true })
             })
-
     }
 
     function changeSubmitByInput() {
@@ -64,7 +77,7 @@ export default function Login({ screenHidden }: { screenHidden: boolean }) {
         <div className={style.loginContainer}>
                 <form
                     className={`${screenHidden ? style.loginFormVisible : style.loginFormHidden} ${style.loginForm}`}
-                    onSubmit={event => sendLogin(event)}
+                    onSubmit={event => sendFormLogin(event)}
                 >
                     <img width="200px" src={instagramLogoNome} alt="" style={{ marginBottom: "20px" }} />
 

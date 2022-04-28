@@ -5,10 +5,11 @@ import { useState } from 'react'
 
 interface Props{
     onChange?: ((event: React.ChangeEvent<HTMLInputElement>) => void),
-    value?: any
+    value?: any,
+    keyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export default function InputPassword({onChange = (() => {}), value = ""}: Props){
+export default function InputPassword({onChange = (() => {}), value = "", keyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {}}: Props){
 
     const [hiddePassword, setHidePassword] = useState(false)
     const [typeInput, setTypeInput] = useState("password")
@@ -22,7 +23,7 @@ export default function InputPassword({onChange = (() => {}), value = ""}: Props
     return (
         <div className={style.passwordInputArea}>
             <input type={typeInput} placeholder="Password" value={value} onChange={event => onChange(event)} className={style.loginInput} />
-            <button onClick={event => {
+            <button type="button" onClick={event => {
                 hidePassword(event)
             }}>
                 <EyeSlashIcon width="20px" fill="gray" style={{
